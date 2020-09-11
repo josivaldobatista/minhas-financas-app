@@ -26,7 +26,7 @@ class Login extends React.Component {
                                 <div className="col-lg-12">
                                     <div className="bs-component">
                                         <fieldset>
-                                            <FormGroup label="Email: *" htmlFor="email">
+                                            <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
                                                 <input type="email" className="form-control" id="email"
                                                     value={this.state.email} onChange={e => this.setState({email:e.target.value})}
                                                     aria-describedby="emailHelp" placeholder="Informe o Email" />
@@ -36,9 +36,9 @@ class Login extends React.Component {
                                                 value={this.state.senha} onChange={e => this.setState({senha:e.target.value})}
                                                     placeholder="Informe a Senha" />
                                             </FormGroup>
+                                            <button onClick={() => this.entrar()} className="btn btn-success">Entrar</button>
+                                            <button onClick={() => this.entrar()} className="btn btn-warning">Cadastrar</button>
                                         </fieldset>
-                                        <button onClick={() => this.entrar()} className="btn btn-success">Entrar</button>
-                                        <button onClick={() => this.entrar()} className="btn btn-warning">Cadastrar</button>
                                     </div>
                                 </div>
                             </div>
