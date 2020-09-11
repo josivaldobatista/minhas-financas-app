@@ -4,6 +4,17 @@ import Card from '../components/card'
 import FormGroup from '../components/form-group'
  
 class Login extends React.Component {
+
+    state = {
+        email: '',
+        senha: ''
+    }
+
+    entrar = () => {
+        console.log('Email:', this.state.email)
+        console.log('Senha:', this.state.senha)
+    }
+
     render() {
         return(
         <div className="container">
@@ -16,14 +27,18 @@ class Login extends React.Component {
                                     <div className="bs-component">
                                         <fieldset>
                                             <FormGroup label="Email: *" htmlFor="email">
-                                                <input type="email" className="form-control" id="email" 
+                                                <input type="email" className="form-control" id="email"
+                                                    value={this.state.email} onChange={e => this.setState({email:e.target.value})}
                                                     aria-describedby="emailHelp" placeholder="Informe o Email" />
                                             </FormGroup>
                                             <FormGroup label="Senha: *" htmlFor="senha">
-                                                <input type="password" className="form-control" id="senha" 
+                                                <input type="password" className="form-control" id="senha"
+                                                value={this.state.senha} onChange={e => this.setState({senha:e.target.value})}
                                                     placeholder="Informe a Senha" />
                                             </FormGroup>
                                         </fieldset>
+                                        <button onClick={() => this.entrar()} className="btn btn-success">Entrar</button>
+                                        <button onClick={() => this.entrar()} className="btn btn-warning">Cadastrar</button>
                                     </div>
                                 </div>
                             </div>
