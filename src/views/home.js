@@ -1,6 +1,7 @@
 import React from 'react'
 
-import axios from 'axios'
+import UsuarioService from '../app/services/usuarioService'
+import LocalStorateService from '../app/services/localStorageService'
 
 class Home extends React.Component {
 
@@ -8,13 +9,16 @@ class Home extends React.Component {
         saldo: 0
     }
 
+    constructor() {
+        super()
+        this.usuarioService = new UsuarioService();
+    }
+
     componentDidMount() {
-        const usuarioLogadoString = localStorage.getItem('_usuario_logado')
-        const usuarioLogado = JSON.parse(usuarioLogadoString)
+        const usuarioLogado = LocalStorateService.obterItem('_usuario_logado') 
 
-        console.log('USUARIO LOGADO: ', usuarioLogado)
-
-        axios.get(`http://localhost:8080/api/usuarios/${usuarioLogado.id}/saldo`)
+        this.usuarioService
+            .saldoById(usuarioLogado.id)
             .then(response => {
                 this.setState({ saldo: response.data })
             }).catch(erro => {
@@ -28,7 +32,7 @@ class Home extends React.Component {
                 <h1 className="display-3">Bem vindo!</h1>
                 <p className="lead">Esse é seu sistema de finanças.</p>
                 <p className="lead">Seu saldo para o mês atual é de R$ {this.state.saldo}</p>
-                <hr className="my-4" /> 
+                <hr className="my-4" />
                 <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
                 <p className="lead">
                     <a className="btn btn-primary btn-lg"
